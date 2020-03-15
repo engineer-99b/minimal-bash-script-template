@@ -73,8 +73,6 @@ evaluate_arguments $@
 
 # Example
 
-echo
-
 print_ascii
 
 print_separator
