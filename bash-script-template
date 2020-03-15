@@ -1,0 +1,62 @@
+#! /bin/sh
+
+#-----------------------------------#
+#                                   |
+#  Useful script template for Bash  |
+#                                   |
+#           engineer-99b            |
+#                                   |
+# /---------------------------------#
+#/
+
+# ---------------------------------------------------------------------
+
+# - Setup
+
+NAME=$(basename $0)
+
+ARGS=$@
+
+HELP=$(cat << EOL
+Usage: $NAME [OPTIONS]
+
+  Options:
+  -m     --minimal    Minimal mode
+  -h -?  --help       Print usage instructions
+EOL
+)
+
+# - Options
+
+MINIMAL=0
+
+# ...
+
+# ---------------------------------------------------------------------
+
+evaluate_arguments()
+{
+	for arg in $ARGS
+	do
+		case $arg in
+			-h|-\?|--help) printf "${HELP[@]}\n" ; exit ;;
+
+			-m|--minimal) MINIMAL=1 ;;
+
+			# ...
+		esac
+	done
+}
+
+run()
+{
+	echo $NAME $([ $MINIMAL == 1 ] && echo "(Minimal mode)")
+
+	# ...
+}
+
+# ---------------------------------------------------------------------
+
+evaluate_arguments
+
+run
