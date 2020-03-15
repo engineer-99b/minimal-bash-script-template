@@ -1,7 +1,5 @@
 #! /bin/sh
 
-# engineer-99b
-
 # -------------------------------------------------------------------
 
 NAME=$(basename $0)
@@ -13,6 +11,18 @@ MINIMAL=0
 VERBOSE=0
 
 # -------------------------------------------------------------------
+
+print_help()
+{	
+	cat <<- EOF
+	Usage: $NAME [OPTIONS]
+
+	  Options:
+	  -m     --minimal    Minimal mode
+	  -v     --verbose    Verbose mode
+	  -h -?  --help       Print usage instructions
+	EOF
+}
 
 print_ascii() { cat << EOF
 	 ________________________________         
@@ -27,22 +37,11 @@ print_ascii() { cat << EOF
   /      :'     ':                            F
  /        '-___-'                            / 
 /_________________________________________--"  
+
 EOF
 }
 
-print_help()
-{	
-	cat <<- EOF
-	Usage: $NAME [OPTIONS]
-
-	  Options:
-	  -m     --minimal    Minimal mode
-	  -v     --verbose    Verbose mode
-	  -h -?  --help       Print usage instructions
-	EOF
-
-	exit
-}
+print_separator() { printf "%*s\n" 60 | tr ' ' '-' ; }
 
 log()
 {
@@ -60,7 +59,7 @@ evaluate_arguments()
 	for arg in $@
 	do
 		case $arg in
-			-h|-\?|--help) print_help ;;
+			-h|-\?|--help) print_help ; exit ;;
 
 			-m|--minimal) MINIMAL=1 ;;
 			-v|--verbose) VERBOSE=1 ;;
@@ -74,22 +73,44 @@ evaluate_arguments $@
 
 # Example
 
+echo
+
 print_ascii
 
-echo ""
-echo $NAME
-echo ""
+print_separator
+
+echo
 
 log "Error" 0
 log "Success" 1
 log "Warning" 2
 log "Information"
 
-echo ""
+echo
+
+print_separator
+
+echo
+
+echo "Logging example: "
+
+echo
 
 log "Could not establish connection to node" 0
-log "Compilation complete - Total time: 00:34:56" 1
-log "Battery life is running low" 2
-log "Uploading payload to target..."
+log "Compilation complete - Total time: 00:01:17" 1
+log "Low battery life" 2
+log "Extracting buffer..."
+log "Buffer extracted: " 1
 
-echo ""
+cat << EOF
+	
+	0x65 0x6e 0x67 0x69 0x6e 0x65 
+	0x65 0x72 0x2d 0x39 0x39 0x62
+
+	0x32 0x30 0x32 0x30
+
+EOF
+
+log "Exiting..."
+
+echo
