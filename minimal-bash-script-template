@@ -107,11 +107,11 @@ cat << EOF
 
 EOF
 
-read -p ">>> " x
+read -p ">>> " message
 
 echo
 
-log "Message received: $x" 1
+log "Message received: $message" 1
 
 echo
 
