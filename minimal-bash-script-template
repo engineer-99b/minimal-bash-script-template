@@ -24,7 +24,9 @@ print_help()
 	EOF
 }
 
-print_ascii() { cat << EOF
+print_ascii() 
+{ 
+cat << EOF
      ________________________________         
     /                                "-_          
    /      .  |  .                       \          
@@ -75,10 +77,6 @@ evaluate_arguments $@
 
 print_ascii
 
-print_separator
-
-echo
-
 log "Error" 0
 log "Success" 1
 log "Warning" 2
@@ -108,6 +106,14 @@ cat << EOF
 	0x32 0x30 0x32 0x30
 
 EOF
+
+read -p ">>> " x
+
+echo
+
+log "Message received: $x" 1
+
+echo
 
 log "Exiting..."
 
