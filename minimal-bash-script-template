@@ -1,7 +1,5 @@
 #! /bin/sh
 
-NAME=$(basename $0)
-
 MINIMAL=0
 VERBOSE=0
 
@@ -10,7 +8,7 @@ VERBOSE=0
 print_help()
 {	
 cat << EOF
-Usage: $NAME [OPTIONS]
+Usage: generate [OPTIONS]
 
   Options:
     -m      --minimal    Minimal mode
