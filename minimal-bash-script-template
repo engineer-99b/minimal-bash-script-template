@@ -9,14 +9,14 @@ VERBOSE=0
 
 print_help()
 {	
-	cat <<- EOF
-	Usage: $NAME [OPTIONS]
+cat << EOF
+Usage: $NAME [OPTIONS]
 
-	  Options:
-	  -m     --minimal    Minimal mode
-	  -v     --verbose    Verbose mode
-	  -h -?  --help       Print usage instructions
-	EOF
+  Options:
+    -m      --minimal    Minimal mode
+    -v      --verbose    Verbose mode
+    -h, -?, --help       Print usage instructions
+EOF
 }
 
 print_ascii() 
