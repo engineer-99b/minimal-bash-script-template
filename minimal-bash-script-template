@@ -8,7 +8,7 @@ VERBOSE=0
 print_help()
 {	
 cat << EOF
-Usage: generate [OPTIONS]
+Usage: minimal-bash-script-template [OPTIONS]
 
   Options:
     -m      --minimal    Minimal mode
