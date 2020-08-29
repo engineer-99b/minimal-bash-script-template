@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 MINIMAL=0
 VERBOSE=0
@@ -36,20 +36,21 @@ cat << EOF
 EOF
 }
 
-print_separator() { printf "%*s\n" 60 | tr ' ' '-' ; }
+print_sep() { printf "%*s\n" 60 | tr ' ' '-' ; }
+
+print_log() { printf "\e[m[\e[%dm%c\e[m] %s\n" "$@" ; }
 
 log()
 {
-	[ "$2" = 0 ] && printf "\e[m[\e[31m-\e[m]"
-	[ "$2" = 1 ] && printf "\e[m[\e[32m+\e[m]"
-	[ "$2" = 2 ] && printf "\e[m[\e[33m!\e[m]"
-	
-	[ -z $2 ] && printf "\e[m[*]"
-
-	printf "\x20$1\n"
+	case $2 in
+		0) print_log 31 '-' "$1" ;;
+		1) print_log 32 '+' "$1" ;;
+		2) print_log 33 '!' "$1" ;;
+		*) print_log 0  '*' "$1" ;;
+	esac
 }
 
-evaluate_arguments()
+eval_args()
 {
 	for arg in $@
 	do
@@ -64,7 +65,7 @@ evaluate_arguments()
 
 # -------------------------------------------------------------------
 
-evaluate_arguments $@
+eval_args $@
 
 # Example
 
@@ -77,7 +78,7 @@ log "Information"
 
 echo
 
-print_separator
+print_sep
 
 echo
 
@@ -86,7 +87,7 @@ echo "Logging example: "
 echo
 
 log "Could not establish connection to node" 0
-log "Compilation complete - Total time: 00:01:17" 1
+log "Compilation complete — total time: 00:01:17" 1
 log "Low battery life" 2
 log "Extracting buffer..."
 log "Buffer extracted: " 1
